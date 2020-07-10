@@ -62,6 +62,34 @@
 	                        </span>
 	                    @enderror
 					</div>
+
+					<div class="form-group">
+						<select name="quarters_id" class="form-control @error('quarters_id') is-invalid @enderror">
+							<option value="">Seleccione Trimestre...</option>
+							@foreach ($quarters as $quarters)
+								<option value="{{ $quarters->id }}" @if (old('quarters_id') == $quarters->id) selected @endif>{{ $quarters->num_quarter }}</option>
+							@endforeach
+						</select>
+						@error('quarters_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+
+					<div class="form-group">
+						<select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+							<option value="">Seleccione Categoría...</option>
+							@foreach ($cats as $cat)
+								<option value="{{ $cat->id }}" @if (old('category_id') == $cat->id) selected @endif>{{ $cat->name }}</option>
+							@endforeach
+						</select>
+						@error('category_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
 	
 					
 					<div class="form-group">

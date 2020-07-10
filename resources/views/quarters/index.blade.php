@@ -50,8 +50,7 @@
 						@endforeach
 					</tbody>
 				</table>
-					{{ $quarters
-						->links() }}
+			
 			</div>
 		</div>
 	</div>

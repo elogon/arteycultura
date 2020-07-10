@@ -30,6 +30,8 @@ class UserRequest extends FormRequest
             'document_type' => 'required',
             'num_document'  => 'required|numeric',
             'email'         => 'required|email|unique:users,email',
+            'rol_id'        => 'required'
+
             
             ];
         }else{
@@ -40,7 +42,7 @@ class UserRequest extends FormRequest
             'num_document'  => 'required|numeric',
             'email'         => 'required|email|unique:users',
             'password'      => 'required|confirmed',
-            'rol_id'       => 'numeric',
+            'rol_id'        => 'numeric'
              ];
         
         }   
@@ -49,15 +51,15 @@ class UserRequest extends FormRequest
         return [
             'fullname.required'        => 'El campo Nombre Completo es obligatorio',
             'fullname.min'             => 'El campo Nombre Completo debe tener al menos :min caracteres',
-             'document_type.required'  => 'El campo Tipo de Documento es obligatorio',
-             'num_document.required'   => 'El campo Número de Documento es obligatorio',
-             'num_document.numeric'   => 'El campo Número de Documento debe ser númerico',
+            'document_type.required'   => 'El campo Tipo de Documento es obligatorio',
+            'num_document.required'    => 'El campo Número de Documento es obligatorio',
+            'num_document.numeric'     => 'El campo Número de Documento debe ser númerico',
             'email.required'           => 'El campo Correo Electrónico es obligatorio',
             'email.email'              => 'El campo Correo Electrónico debe ser una dirección de correo válida',
             'email.unique'             => 'El campo Correo Electrónico ya está en uso',   
             'password.required'        => 'El campo Contraseña es obligatorio',
             'password.confirmed'       => 'El campo Confirmación de Contraseña no coincide',
-            'rol_id.numeric'         => 'El campo rol_id debe ser numero'
+            'rol_id.numeric'           => 'El campo rol id es obligatorio'
         ];
     }
 } 

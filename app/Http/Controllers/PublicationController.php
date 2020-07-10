@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Publication;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PublicationRequest;
 
@@ -41,6 +42,7 @@ class PublicationController extends Controller
         $publication = new Publication;
         $publication->title         = $request->title;
         $publication->description   = $request->description;
+        $publication->user_id       = $request->user_id;
         if ($request->hasFile('file')) {
             $file = time().'.'.$request->file->extension();
             $request->file->move(public_path('imgs'), $file);
@@ -84,9 +86,10 @@ class PublicationController extends Controller
      */
     public function update(PublicationRequest $request, $id)
     {
-        $publication = new Publication::find($id);
+        $publication = Publication::find($id);
         $publication->title         = $request->title;
         $publication->description   = $request->description;
+        $publication->user_id       = $request->user_id;
         if ($request->hasFile('file')) {
             $file = time().'.'.$request->file->extension();
             $request->file->move(public_path('imgs'), $file);

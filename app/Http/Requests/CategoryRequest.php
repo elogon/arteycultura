@@ -27,14 +27,14 @@ class CategoryRequest extends FormRequest
             // Form Edit
             return [
                 'name'        => 'required|min:4|unique:categories,name,'.$this->id,
-                'image'       => 'max:1000',
+                'image'       => 'max:2000',
                 'description' => 'required',
             ];
         } else {
             // Form Create
             return [
                 'name'        => 'required|min:4|unique:categories',
-                'image'       => 'required|image|max:1000',
+                'image'       => 'required|image|max:2000',
                 'description' => 'required',
             ];
         }
@@ -46,7 +46,7 @@ class CategoryRequest extends FormRequest
             'name.min'             => 'El campo Nombre debe tener al menos :min caracteres',
             'name.unique'          => 'El campo Nombre ya está en uso',
             'image.required'       => 'El campo Imagen es obligatorio',
-            'image.max'            => 'El archivo Imagen no debe pesar más de :max kilobytes.',
+            'image.max'            => 'El Imagen no debe pesar más de :max kilobytes.',
             'description.required' => 'El campo Descripción es obligatorio',
         ];
     }

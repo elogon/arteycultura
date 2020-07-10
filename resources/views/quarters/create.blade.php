@@ -17,7 +17,7 @@
 					@csrf
 
 					<div class="form-group">
-						<input type="text" class="form-control @error('num_quarter') is-invalid @enderror" name="num_quarter" value="{{ old('num_quarter') }}" placeholder="Timestre">
+						<input type="number" class="form-control @error('num_quarter') is-invalid @enderror" name="num_quarter" value="{{ old('num_quarter') }}" placeholder="Timestre">
 						@error('num_quarter')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

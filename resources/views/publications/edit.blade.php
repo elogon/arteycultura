@@ -50,6 +50,20 @@
                             </span>
                         @enderror
 					</div>
+
+					<div class="form-group">
+						<select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
+							<option value="">Seleccione Usuario...</option>
+							@foreach ($users as $user)
+								<option value="{{ $user->id }}" @if (old('user_id', $art->user_id) == $user->id) selected @endif>{{ $user->fullname }}</option>
+							@endforeach
+						</select>
+						@error('user_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
 					
 					<div class="form-group">
 						<button type="submit" class="btn btn-custom" id="custom" > 

@@ -13,7 +13,7 @@ class TrainingProgramRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,14 +25,14 @@ class TrainingProgramRequest extends FormRequest
     {
         return [
             'name_program'      => 'required',
-            'cod_program' => 'required',
+            'cod_program'       => 'required',
             
         ];
     }
      public function messages() {
         return [
-            'name_program.required'        => 'El campo nombre es obligatorio',
-            'cod_program.required'         => 'El campo id programa es obligatorio',
+            'name_program.required'        => 'El campo Nombre es obligatorio',
+            'cod_program.required'         => 'El campo Código programa es obligatorio',
         ];
     }
 }

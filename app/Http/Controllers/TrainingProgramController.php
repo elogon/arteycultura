@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Training_program;
 use Illuminate\Http\Request;
+use App\Http\Requests\TrainingProgramRequest;
 
 class TrainingProgramController extends Controller
 {
@@ -40,6 +41,10 @@ class TrainingProgramController extends Controller
         $trainig_programs = new Training_program;
         $trainig_programs->name_program  = $request->name_program;
         $trainig_programs->cod_program   = $request->cod_program;
+
+        if($trainig_programs->save()) {
+            return redirect('trainig_programs')->with('message', 'El Programa de Formación: '.$trainig_programs->name_program.' fue adicionada con Exito!');
+        }
     }
 
     /**
@@ -48,9 +53,10 @@ class TrainingProgramController extends Controller
      * @param  \App\Training_program  $training_program
      * @return \Illuminate\Http\Response
      */
-    public function show(Training_program $training_program)
+    public function show($id)
     {
-        //
+         $trainig_programs = Training_program::findOrFail($id);
+        return view('trainig_programs.show')->with('trainig_programs', $trainig_programs);
     }
 
     /**
@@ -59,9 +65,10 @@ class TrainingProgramController extends Controller
      * @param  \App\Training_program  $training_program
      * @return \Illuminate\Http\Response
      */
-    public function edit(Training_program $training_program)
+    public function edit( $id)
     {
-        //
+         $trainig_programs = Training_program::findOrFail($id);
+        return view('trainig_programs.edit')->with('trainig_programs', $trainig_programs);
     }
 
     /**
@@ -71,9 +78,15 @@ class TrainingProgramController extends Controller
      * @param  \App\Training_program  $training_program
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Training_program $training_program)
+    public function update(TrainingProgramRequest $request, $id)
     {
-        //
+        $trainig_programs = new Training_program;
+        $trainig_programs->name_program  = $request->name_program;
+        $trainig_programs->cod_program   = $request->cod_program;
+         
+        if($trainig_programs->save()) {
+            return redirect('trainig_programs')->with('message', 'El Programa de Formación: '.$trainig_programs->name_program.' fue modificada con Exito!');
+        }
     }
 
     /**
@@ -82,8 +95,12 @@ class TrainingProgramController extends Controller
      * @param  \App\Training_program  $training_program
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Training_program $training_program)
+    public function destroy( $id)
     {
-        //
+        $trainig_programs = Training_program::find($id);
+         if($trainig_programs->delete()) {
+            return redirect('trainig_programs')->with('message', 'El Programa de Formación: '.$trainig_programs->name_program.' fue eliminada con Exito!');
+        }
+    }
     }
 }

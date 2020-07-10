@@ -29,9 +29,10 @@ class CulturalEventRequest extends FormRequest
             return [
             'name'          => 'required',
             'description'   => 'required',
-            'file'          => 'max:1000',
+            'file'          => 'max:2000',
             'start_date'    => 'required|date',
-            'end_date'      => 'required|date'
+            'end_date'      => 'required|date',
+            'category_id'   => 'required'
         
         ];
         }else{
@@ -39,9 +40,10 @@ class CulturalEventRequest extends FormRequest
             return [
             'name'          => 'required',
             'description'   => 'required',
-            'file'          => 'max:1000',
+            'file'          => 'max:2000',
             'start_date'    => 'required|date',
-            'end_date'      => 'required|date'
+            'end_date'      => 'required|date',
+            'category_id'   => 'required'
             ];
         }
     }
@@ -49,10 +51,13 @@ class CulturalEventRequest extends FormRequest
         return [
             'name.required'         => 'El campo Nombre es obligatorio',
             'description.required'  => 'El campo Descripción es obligatorio',
-            'file.required'         => 'El campo archivo es obligatorio',
-            'file.max'              => 'El campo archivo no debe pasar más de :max kilobites.',
-            'start_date.required'   => 'El campo fecha inicio es obligatorio',
-            'end_date.required'     => 'El campo fecha fin es obligatorio'
+            'file.required'         => 'El campo Archivo es obligatorio',
+            'file.max'              => 'El campo Archivo no debe pasar más de :max kilobites.',
+            'start_date.required'   => 'El campo Fecha Inicio es obligatorio',
+            'start_date.date'       => 'El campo Fecha Inicio debe ser un dato',
+            'end_date.required'     => 'El campo Fecha Fin es obligatorio',
+            'end_date.date'         => 'El campo Fecha Fin debe ser un dato',
+            'category_id'           => 'El campo Categoria es obligatorio'
         ];
     }
 }

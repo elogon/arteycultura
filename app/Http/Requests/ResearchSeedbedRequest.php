@@ -34,6 +34,8 @@ class ResearchSeedbedRequest extends FormRequest
             'days'                   => 'required|date',
             'start_date'             => 'required|date',
             'end_date'               => 'required|date',
+            'quarters_id'            => 'required',
+            'category_id'            => 'required'
         ];
         }else{
             // Form create
@@ -44,6 +46,8 @@ class ResearchSeedbedRequest extends FormRequest
             'days'                   => 'required|date',
             'start_date'             => 'required|date',
             'end_date'               => 'required|date', 
+            'quarters_id'            => 'required',
+            'category_id'            => 'required'
              ];  
         }
         
@@ -52,10 +56,15 @@ class ResearchSeedbedRequest extends FormRequest
         return [
             'name_research_seedbed.required'  => 'El campo Nombre Completo es obligatorio',
             'description.required'            => 'El campo Descripción es obligatorio',
-             'num_document.required'          => 'El campo Número de Documento es obligatorio',
+            'num_document.required'           => 'El campo Número de Documento es obligatorio',
             'days.required'                   => 'El campo Dias es obligatorio',
-            'start_date.required'             => 'El campo fecha inicio es obligatorio',
-            'end_date.required'               => 'El campo fecha fin es obligatorio',
+            'days.date'                       => 'El campo Dias debe ser un dato',
+            'start_date.required'             => 'El campo Fecha Inicio es obligatorio',
+            'start_date.date'                 => 'El campo Fecha Inicio debe ser un dato',
+            'end_date.required'               => 'El campo Fecha Fin es obligatorio',
+            'end_date.date'                   => 'El campo Fecha Fin debe ser un dato',
+            'quarters_id.required'            => 'El campo Trimestre es obligatorio',
+            'category_id.required'            => 'El campo Categoria es obligatorio'
         ];
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Research_seedbed;
+use App\Quarters;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ResearchSeedbedRequest;
 
@@ -43,6 +45,8 @@ class ResearchSeedbedController extends Controller
         $research_seedbeds->days                   = $request->days ;
         $research_seedbeds->start_date             = $request->start_date;
         $research_seedbeds->end_date               = $request->end_date;
+        $research_seedbeds->quarters_id            = $request->quarters_id;
+        $research_seedbeds->category_id            = $request->category_id;
 
         if($research_seedbeds->save()) {
             return redirect('research_seedbeds')->with('message', 'El Semillero: '.$research_seedbeds->name_research_seedbed.' fue adicionado con Exito!');
@@ -89,6 +93,8 @@ class ResearchSeedbedController extends Controller
         $research_seedbeds->days                   = $request->days ;
         $research_seedbeds->start_date             = $request->start_date;
         $research_seedbeds->end_date               = $request->end_date;
+        $research_seedbeds->quarters_id            = $request->quarters_id;
+        $research_seedbeds->category_id            = $request->category_id;
 
         if($research_seedbeds->save()) {
             return redirect('research_seedbeds')->with('message', 'El Semillero: '.$research_seedbeds->name_research_seedbed.' fue modificado con Exito!');

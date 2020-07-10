@@ -34,6 +34,15 @@
 						<th>Fecha Fin:</th>
 						<td>{{ $research_seedbeds->end_date }}</td>
 					</tr>
+					<tr>
+						<th>Trimestre:</th>
+						<td>{{ $quarters->num_quarter }}</td>
+					</tr>
+					<tr>
+						<th>Categoria:</th>
+						<td>{{ $cat->name }}</td>
+					</tr>
+
 					
 				</table>
 

@@ -26,6 +26,10 @@
 						<th>Descripción:</th>
 						<td>{{ $publications->description }}</td>
 					</tr>
+					<tr>
+						<th>Usuario:</th>
+						<td>{{ $publications->user->fullname }}</td>
+					</tr>
 				</table>
 
 			</div>

@@ -35,7 +35,7 @@
 					</tr>
 					<tr>
 						<th>Usuario:</th>
-						<td>{{ $art->user->fullname }}</td>
+						<td>{{ $cultural_events->user->fullname }}</td>
 					</tr>
 						
 				</table>

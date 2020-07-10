@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Cultural_event;
 use App\Category;
-use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CulturalEventRequest;
 
@@ -12,15 +11,7 @@ use App\Http\Requests\CulturalEventRequest;
 
 class CulturalEventController extends Controller
 {
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +30,6 @@ class CulturalEventController extends Controller
      */
     public function create()
     {
-        $users = User::where('role', '=', 'Apprentice')->get();
         return view('cultural_events.create')
              ->with('cultural_events', $cultural_events)
              ->with('users', $users);
