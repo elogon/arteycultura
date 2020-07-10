@@ -36,4 +36,5 @@
         </div>
     </div>
 </div>
+@include('menu.menu');
 @endsection

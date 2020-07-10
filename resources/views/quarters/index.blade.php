@@ -20,8 +20,8 @@
 					<thead>
 						<tr>
 							<th>Trimestre</th>
-							<th>Hora inicio</th>
-							<th>Hora fin</th>
+							<th>Fecha Inicio</th>
+							<th>Fecha Fin</th>
 							<td>Acciones</td>
 						</tr>
 					</thead>

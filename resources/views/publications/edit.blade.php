@@ -39,7 +39,7 @@
 							<i class="fa fa-upload"></i>
 							Seleccionar Archivo
 						</button>
-						<input type="file" name="file" id="photo" class="d-none" accept="file/*">
+						<input type="file" name="file" id="file" class="d-none" accept="file/*">
 						<br>
 						<div class="text-center @error('image') is-invalid @enderror">
 							<img id="preview" class="img-thumbnail" src="{{ asset($publication->file) }}" width="120px">

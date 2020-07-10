@@ -5,15 +5,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1> <i class="fa fa-calendar-alt"></i> Lista de Eventos</h1>
+				<h1> <i class="fa fa-layer-group"></i> Lista de Eventos</h1>
 				<hr>
 				<a href="{{ url('cultural_events/create') }}" class="btn btn-custom"> 
 					<i class="fa fa-plus"></i> 
 					Adicionar Eventos
 				</a>
+				<br>
 			
 				
-				<br>
 				@csrf
 			
 				<table class="table table-striped table-hover">
@@ -22,9 +22,8 @@
 							<th>Nombre</th>
 							<th>Description</th>
 							<th>Archivo</th>
-							<th>Descartar</th>
-							<th>Hora inicio</th>
-							<th>Hora fin</th>
+							<th>Fecha Inicio</th>
+							<th>Fecha Fin</th>
 							<td>Acciones</td>
 						</tr>
 					</thead>
@@ -36,7 +35,6 @@
 								<td>{{ $cultural_events->file }}</td>
 								<td>{{ $cultural_events->start_date}}</td>
 								<td>{{ $cultural_events->end_date}}</td>
-								<td>{{ $cultural_events->stand_out}}</td>
 								<td>
 									<a href="{{ url('cultural_events/'.$cultural_events->id) }}" class="btn btn-sm btn-custom">
 										<i class="fa fa-search"></i>
@@ -56,8 +54,10 @@
 						@endforeach
 					</tbody>
 				</table>
-					{{ $cultural_events->links() }}
+				
+				{{ $cultural_events->links() }}
 			</div>
 		</div>
 	</div>
+	 @include('menu.menu');
 @endsection

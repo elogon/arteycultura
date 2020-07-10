@@ -12,10 +12,5 @@ class Category extends Model
         'image',
         'description'
     ];
-    public function research_seedbed() {
-        return $this->hasMany('App\Research_seedbed');
-    }
-    public function cultural_event() {
-        return $this->hasMany('App\Cultural_event');
-    }
+    
 }

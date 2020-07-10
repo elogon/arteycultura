@@ -28,7 +28,7 @@
 
 
 					<div class="form-group">
-						<input type="time" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ old('start_date') }}" placeholder=" Hora inicio">
+						<input type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ old('start_date') }}" placeholder="Fecha inicio">
 						@error('start_date')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
 
 
 					<div class="form-group">
-						<input type="time"class="form-control @error('end_date') is-invalid @enderror"  name="end_date" value="{{ old('end_date') }}" placeholder="Hora fin">
+						<input type="date"class="form-control @error('end_date') is-invalid @enderror"  name="end_date" value="{{ old('end_date') }}" placeholder="Fecha Fin">
 						@error('end_date')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
 
 	
 					<div class="container">
-						<button type="submit" class="btn btn-success"> <i class="fa fa-save"></i> Guardar </button>
+						<button type="submit" class="btn btn-warning"> <i class="fa fa-save"></i> Guardar </button>
 					</div>
 					
 					

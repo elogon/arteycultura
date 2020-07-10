@@ -8,7 +8,7 @@
 				<h1> <i class="fa fa-pen"></i> Modificar Categoría</h1>
 				<hr>
 				<a href="{{ url('categories') }}"> 
-					<i class="fa fa-arrow-left"></i>
+					<i class="fa fa-list"></i>
 					Ir a Lista de Categorías
 				</a>
 				<br><br>
@@ -24,6 +24,7 @@
                         </span>
                     @enderror
 					</div>
+					
 					<div class="form-group">
 						<button class="btn btn-block btn-custom btn-upload" id="custom" type="button">
 							<i class="fa fa-upload"></i>

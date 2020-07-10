@@ -14,8 +14,7 @@ class AlterUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-        $table->string('role')->default('Aprendiz');
-        $table->string('status')->default(1)->after('role');
+        $table->boolean('status')->default(1)->after('rol_id');
         });
     }
 
@@ -27,7 +26,7 @@ class AlterUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role','status');
+            $table->dropColumn('rol_id','status');
         });
     }
 }

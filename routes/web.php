@@ -22,8 +22,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
 Route::resource('users', 'UserController');
 Route::resource('categories', 'CategoryController');
 Route::resource('publications', 'PublicationController');
@@ -46,4 +44,5 @@ Route::post('import/excel/users', 'UserController@import');
 // Role Apprentice
 Route::get('mydata', 'UserController@mydata');
 Route::put('mydata/{id}', 'UserController@updmydata');
+
 

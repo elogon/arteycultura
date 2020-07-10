@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\categoryRequest;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -71,7 +71,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $cat = Category::findOrFail($id);
-        return view('categories.show')->with('cat', $cat);
+        return view('categories.edit')->with('cat', $cat);
     }
 
     /**

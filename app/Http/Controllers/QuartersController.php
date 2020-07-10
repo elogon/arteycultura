@@ -43,7 +43,7 @@ class QuartersController extends Controller
         $quarters->end_date     = $request->end_date ;
 
         if($quarters->save()) {
-                return redirect('quarters')->with('message', 'El Trimestre fue adicionado con Exito!');
+                return redirect('quarters')->with('message', 'El Trimestre: '.$quarters->num_quarter.' fue adicionado con Exito!');
             }
     }
 
@@ -78,14 +78,14 @@ class QuartersController extends Controller
      * @param  \App\Quarters  $quarters
      * @return \Illuminate\Http\Response
      */
-    public function update(QuartersRequest $request, Quarters $quarters)
+    public function update(QuartersRequest $request, $id)
     {
         $quarters = Quarters::find($id);
         $quarters->num_quarter  = $request->num_quarter;
         $quarters->start_date   = $request->start_date;
         $quarters->end_date     = $request->end_date ;
         if($quarters->save()) {
-            return redirect('quarters')->with('message', 'El Trimestre fue modificado con Exito!');
+            return redirect('quarters')->with('message', 'El Trimestre: '.$quarters->num_quarter.' fue modificado con Exito!');
         }
     }
 
@@ -99,23 +99,8 @@ class QuartersController extends Controller
     {
         $quarters = Quarters::find($id);
          if($quarters->delete()) {
-            return redirect('quarters')->with('message', 'El Trimestre fue eliminado con Exito!');
+            return redirect('quarters')->with('message', 'El Trimestre: '.$quarters->num_quarter.' fue eliminado con Exito!');
         }
     }
-    public function pdf() {
-        //dd('Descargar PDF');
-        $quarters = Quarters::all();
-        $pdf = \PDF::loadView('quarters.pdf', compact('quarters'));
-        return $pdf->download('allquarters.pdf');
-    }
-
-    public function excel() {
-        return \Excel::download(new QuartersExport, 'allquarters.xlsx');
-    }
-
-    public function import(Request $request) {
-        $file = $request->file('file');
-        \Excel::import(new QuartersImport, $file);
-        return redirect()->back()->with('message', 'Los trimestres se importaron con exito!');
-    }
+   
 }

@@ -7,7 +7,7 @@
 			<div class="col-md-8 offset-2">
 				<h1> <i class="fa fa-search"></i> Consultar Semillero</h1>
 				<hr>
-				<a href="{{ url('users') }}"> 
+				<a href="{{ url('research_seedbeds') }}"> 
 					<i class="fa fa-arrow-left"></i>
 					Ir a Lista de Semilleros
 				</a>
@@ -27,11 +27,11 @@
 						<td>{{ $research_seedbeds->days }}</td>
 					</tr>
 					<tr>
-						<th>Hora inicio:</th>
+						<th>Fecha Inicio:</th>
 						<td>{{ $research_seedbeds->start_date }}</td>
 					</tr>
 					<tr>
-						<th>Hora fin:</th>
+						<th>Fecha Fin:</th>
 						<td>{{ $research_seedbeds->end_date }}</td>
 					</tr>
 					

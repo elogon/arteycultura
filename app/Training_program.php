@@ -12,7 +12,5 @@ class Training_program extends Model
     	'name_program',
     	'id_program'
     ];
-public function apprentice() {
-        return $this->hasMany('App\Apprentice');
-    }
+
 }	

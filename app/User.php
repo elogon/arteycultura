@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'fullname',
         'document_type',
         'num_document',
         'email',
@@ -47,6 +47,12 @@ class User extends Authenticatable
     ];
     public function research_seedbed() {
         return $this->hasMany('App\Research_seedbed');
+    }
+    public function cultural_events() {
+        return $this->hasMany('App\Cultural_event');
+    }
+    public function publications() {
+        return $this->hasMany('App\Publication');
     }
     
     

@@ -34,14 +34,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ url('home') }}"> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('home') }}">
                                 <i class="fa fa-home"></i>
-                                {{ __('custom.home') }}
+                                Inicio
                             </a>
                         </li>
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -56,9 +55,9 @@
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">
-                                    <i class="fa fa-user"></i>
-                                    {{ __('custom.register') }}
-                                </a>
+                                        <i class="fa fa-user"></i>
+                                        {{ __('custom.register') }}
+                                    </a>
                                 </li>
                             @endif
                         @else
@@ -67,10 +66,14 @@
                                     {{ Auth::user()->fullname }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (Auth::user()->role == 'Admin')
+                                    @if (Auth::user()->role == "Admin")
+                                        <a class="dropdown-item" href="{{ url('mydata') }}">
+                                            <i class="fa fa-user"></i> 
+                                            Mi Cuenta
+                                        </a>
                                         <a class="dropdown-item" href="{{ url('users') }}">
-                                            <i class="fa fa-users"></i>
-                                             Módulo Usuarios 
+                                            <i class="fa fa-users"></i> 
+                                            Módulo Usuarios
                                         </a>
                                         <a class="dropdown-item" href="{{ url('categories') }}">
                                             <i class="fa fa-layer-group"></i>
@@ -101,7 +104,7 @@
                                             <i class="fa fa-address-card"></i>
                                              Mis Datos 
                                         </a>
-                                        <a class="dropdown-item" href="{{ url('mypublications') }}">
+                                        <a class="dropdown-item" href="{{ url('mypublications') }} ">
                                             <i class="fa fa-list-alt"></i>
                                              Mis Publicaciones
                                         </a>
@@ -159,11 +162,29 @@
                 });
             });
              /* - - - - - - - - - - - - - - - - - - - - - - - - - */
+               @if (session('message'))
+                   Swal.fire(
+                        'Felicitaciones',
+                        '{{ session('message') }}',
+                        'success'
+                    );
+               @endif
+               /* - - - - - - - - - - - - - - - - - - - - - - - - - */
+               @if (session('error'))
+                   Swal.fire(
+                        'Problemas',
+                        '{{ session('error') }}',
+                        'error'
+                    );
+               @endif
+            /* - - - - - - - - - - - - - - - - - - - - - - - - - */
+             /* - - - - - - - - - - - - - - - - - - - - - - - - - */
             $('.btn-upload').click(function(event) {
                 $('#photo').click();
             });
             $('#photo').change(function(event) {
                 var fileName = event.target.files[0].name;
+
                 var reader = new FileReader();
                 reader.onload = function(event) {
                     $('#preview').attr('src', event.target.result);
@@ -198,23 +219,6 @@
                  $(this).parent().submit();
              });
              /* - - - - - - - - - - - - - - - - - - - - - - - - - */
-            $('body').on('change', '#idcat', function(event) {
-                event.preventDefault();
-                $idcat = $(this).val();
-                $tk    = $('input[name=_token]').val();
-                $('.loader').removeClass('d-none');
-                $('#content').hide();
-                $sto = setTimeout(function() {
-                    clearTimeout($sto);
-                    $.post('artsbycat', { 
-                        idcat:  $idcat,
-                        _token: $tk }, function(data) {
-                        $('.loader').addClass('d-none');
-                        $('#content').html(data).fadeIn('slow');
-                    });
-                },1600);
-            });
-            /* - - - - - - - - - - - - - - - - - - - - - - - - - */
               var owl = $('.owl-carousel');
               owl.owlCarousel({
                 margin: 10,

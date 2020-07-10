@@ -45,9 +45,9 @@ class CategoryRequest extends FormRequest
             'name.required'        => 'El campo Nombre es obligatorio',
             'name.min'             => 'El campo Nombre debe tener al menos :min caracteres',
             'name.unique'          => 'El campo Nombre ya está en uso',
-            'description.required' => 'El campo Descripción es obligatorio',
             'image.required'       => 'El campo Imagen es obligatorio',
             'image.max'            => 'El archivo Imagen no debe pesar más de :max kilobytes.',
+            'description.required' => 'El campo Descripción es obligatorio',
         ];
     }
 }

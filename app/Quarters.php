@@ -12,7 +12,5 @@ class Quarters extends Model
         'start_date',
         'end_date',   
     ];
-    public function research_seedbed() {
-        return $this->belongsTo('App\Research_seedbed');
-    }
+    
 }

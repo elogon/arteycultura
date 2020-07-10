@@ -17,10 +17,9 @@ class CreateCulturalEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
-            $table->string('file');
+            $table->string('file')->default('imgs/no-file.png');
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('stand_out');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

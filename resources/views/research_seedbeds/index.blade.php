@@ -19,18 +19,18 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<<th>Nombre del semillero</th>
+							<th>Nombre</th>
 							<th>Descripción</th>
 							<th>Dias</th>
-							<th>Hora inicio</th>
-							<th>Hora fin</th>
+							<th>Fecha Inicio</th>
+							<th>Fecha Fin</th>
 							<td>Acciones</td>
 						</tr>
 					</thead>
 					<tbody id="content">
 						@foreach ($research_seedbeds as $research_seedbeds)
 							<tr>
-								<<td>{{ $research_seedbeds->name_research_seedbed }}</td>
+								<td>{{ $research_seedbeds->name_research_seedbed }}</td>
 								<td>{{ $research_seedbeds->description}}</td>
 								<td>{{ $research_seedbeds->days}}</td>
 								<td>{{ $research_seedbeds->start_date}}</td>

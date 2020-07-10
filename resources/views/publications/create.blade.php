@@ -40,7 +40,7 @@
 						</button>
 						<input type="file" name="file" id="file" class="d-none" accept="file/*">
 						<br>
-						<div class="text-center @error('image') is-invalid @enderror">
+						<div class="text-center @error('file') is-invalid @enderror">
 							<img id="preview" class="img-thumbnail" src="{{ asset('imgs/no-category.png') }}" width="120px">
 						</div>
 						@error('file')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Research_seedbed;
 use Illuminate\Http\Request;
+use App\Http\Requests\ResearchSeedbedRequest;
 
 class ResearchSeedbedController extends Controller
 {
@@ -34,7 +35,7 @@ class ResearchSeedbedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ResearchSeedbedRequest $request)
     {
         $research_seedbeds = new Research_seedbed;
         $research_seedbeds->name_research_seedbed  = $request->name_research_seedbed;
@@ -107,21 +108,4 @@ class ResearchSeedbedController extends Controller
             return redirect('research_seedbeds')->with('message', 'El Semillero: '.$research_seedbeds->name_research_seedbed.' fue eliminado con Exito!');
         }
     }
-    public function pdf() {
-        //dd('Descargar PDF'); 
-        $research_seedbeds = Research_seedbed::all();
-        $pdf = \PDF::loadView('research_seedbeds.pdf', compact('research_seedbeds'));
-        return $pdf->download('allresearch_seedbeds.pdf');
-    }
-
-    public function excel() {
-        return \Excel::download(new Research_seedbedExport, 'allresearch_seedbeds.xlsx');
-    }
-
-    public function import(Request $request) {
-        $file = $request->file('file');
-        \Excel::import(new Research_seedbedImport, $file);
-        return redirect()->back()->with('message', 'Los Semilleros se importaron con exito!');
-    }
-
 }

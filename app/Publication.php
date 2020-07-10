@@ -11,9 +11,9 @@ class Publication extends Model
         'title',
         'description',
         'file',
-        'apprentice_id',
+        'user_id'
     ];
-    public function apprentice() {
-        return $this->hasMany('App\Apprentice');
+    public function user() {
+        return $this->hasOne('App\User');
     }
 }

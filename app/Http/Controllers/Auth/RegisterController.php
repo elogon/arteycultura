@@ -51,7 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'fullname'       => ['required', 'min:4'],
-            'document_type'  => ['required', 'document_type'],
+            'document_type'  => ['required'],
             'num_document'   => ['required', 'numeric'],
             'email'          => ['required', 'email', 'unique:users', 'regex:/(.*)misena\.edu\.co$/i'],
             'password'       => ['required', 'confirmed'],

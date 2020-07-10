@@ -12,13 +12,9 @@ class Research_seedbed extends Model
         'days',
         'start_date',
         'end_date',
-        'user_id',
         'quarter_id',
         'category_id'
     ];
-    public function user() {
-        return $this->belongsTo('App\User');
-    }
     public function quarter() {
         return $this->belongsTo('App\Quarter');
     }

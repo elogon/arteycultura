@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Adicionar Usuarios')
+@section('title', 'Adicionar Programa de Formación')
 
 @section('content')
 		<div class="container">
@@ -17,7 +17,7 @@
 					@csrf
 
 					<div class="form-group">
-						<input type="text" class="form-control @error('name_program') is-invalid @enderror" name="name_program" value="{{ old('name_program') }}" placeholder="Nombre del Programa de Formación">
+						<input type="text" class="form-control @error('name_program') is-invalid @enderror" name="name_program" value="{{ old('name_program') }}" placeholder="Nombre Programa de Formación">
 						@error('name_program')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -26,7 +26,7 @@
 					</div>
 				
 					<div class="form-group">
-						<input type="text" class="form-control @error('cod_program') is-invalid @enderror" name="cod_program" value="{{ old('cod_program') }}" placeholder="Id de programa de formación">
+						<input type="text" class="form-control @error('cod_program') is-invalid @enderror" name="cod_program" value="{{ old('cod_program') }}" placeholder="Código Programa de Formación">
 						@error('cod_program')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
 
 					
 					<div class="container">
-						<button type="submit" class="btn btn-success"> <i class="fa fa-save"></i> Guardar </button>
+						<button type="submit" class="btn btn-warning"> <i class="fa fa-save"></i> Guardar </button>
 					</div>
 					
 				</form>

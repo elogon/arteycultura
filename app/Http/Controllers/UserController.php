@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Requests\UserRequest;
@@ -14,6 +15,15 @@ use App\Imports\UsersImport;
 
 class UserController extends Controller
 {
+  /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -53,8 +63,8 @@ class UserController extends Controller
     $user->email_verified_at  = now();
     $user->password           = bcrypt($request->password);
     $user->remember_token     = Str::random(10);
-    $user->rol_id            = $request->rol_id;
-
+    $user->rol_id             = $request->rol_id;
+ 
     if($user->save()) {
             return redirect('users')->with('message', 'El Usuario: '.$user->fullname.' fue adicionado con Exito!');
         }
@@ -104,6 +114,7 @@ class UserController extends Controller
      $user->num_document      = $request->num_document ;
      $user->email             = $request->email;
      $user->password          = bcrypt($request->password);
+     $user->rol_id            = $request->rol_id;
 
      if($user->save()) {
         return redirect('users')->with('message', 'El Usuario: '.$user->fullname.' fue modificado con Exito!');
@@ -146,5 +157,18 @@ class UserController extends Controller
         \Excel::import(new UsersImport, $file);
         return redirect()->back()->with('message', 'Los Usuarios se importaron con exito!');
     }
+     public function mydata() {
+        $id   = Auth::user()->id;
+        $user = User::findOrFail($id);
+        return view('users.mydata')->with('user', $user);
+    }
+     public function updmydata(UserRequest $request, $id) {
+        $user = User::find($id);
+        $user->fullname          = $request->fullname;
+        $user->document_type     = $request->document_type;
+        $user->num_document      = $request->num_document ;
+        $user->email             = $request->email;
+        $user->rol_id            = $request->rol_id;
 
+      }
 }

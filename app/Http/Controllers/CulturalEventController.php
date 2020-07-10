@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Cultural_event;
+use App\Category;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CulturalEventRequest;
 
-use App\Exports\Cultural_eventsExport;
-//Import
-use App\Imports\Cultural_eventsImport;
+
 
 class CulturalEventController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +39,10 @@ class CulturalEventController extends Controller
      */
     public function create()
     {
-        return view('cultural_events.create');
+        $users = User::where('role', '=', 'Apprentice')->get();
+        return view('cultural_events.create')
+             ->with('cultural_events', $cultural_events)
+             ->with('users', $users);
     }
 
     /**
@@ -44,17 +56,19 @@ class CulturalEventController extends Controller
         $cultural_events = new Cultural_event;
         $cultural_events->name         = $request->name;
         $cultural_events->description  = $request->description;
+        $cultural_events->start_date   = $request->start_date;
+        $cultural_events->end_date     = $request->end_date ;
+        $cultural_events->user_id      = $request->user_id;
+
         if ($request->hasFile('file')) {
             $file = time().'.'.$request->file->extension();
             $request->file->move(public_path('imgs'), $file);
             $cultural_events->file = 'imgs/'.$file;
         }
-        $cultural_events->start_date   = $request->start_date;
-        $cultural_events->end_date     = $request->end_date ;
-        $cultural_events->stand_out    = $request->stand_out ;
+      
 
         if($cultural_events->save()) {
-                return redirect('cultural_events')->with('message', 'El evento fue adicionado con Exito!');
+                return redirect('cultural_events')->with('message', 'El Evento:  '.$cultural_events->name.'  fué adicionado con Éxito!');
             }
     }
 
@@ -64,10 +78,10 @@ class CulturalEventController extends Controller
      * @param  \App\Cultural_event  $cultural_event
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $cultural_events = Cultural_event::findOrFail($id);
-        return view('cultural_events.show')->with('cultural_events', $cultural_events);
+       $cultural_events =  Cultural_event::find($id);
+       return view('cultural_events.show')->with('cultural_events', $cultural_events);
     }
 
     /**
@@ -78,8 +92,11 @@ class CulturalEventController extends Controller
      */
     public function edit($id)
     {
-        $cultural_events = Cultural_event::findOrFail($id);
-        return view('cultural_events.edit')->with('cultural_events', $cultural_events);
+        $cultural_events = Cultural_event::find($id);
+        $users = User::where('role', '=', 'Apprentice')->get();
+        return view('cultural_events.edit')
+             ->with('cultural_events', $cultural_events)
+             ->with('users', $users);
     }
 
     /**
@@ -89,17 +106,23 @@ class CulturalEventController extends Controller
      * @param  \App\Cultural_event  $cultural_event
      * @return \Illuminate\Http\Response
      */
-    public function update(CulturalEventRequest $request, Cultural_event $cultural_event)
+    public function update(CulturalEventRequest $request, $id)
     {
         $cultural_events = Cultural_event::find($id);
         $cultural_events->name         = $request->name;
         $cultural_events->description  = $request->description;
-        $cultural_events->file         = $request->file;
         $cultural_events->start_date   = $request->start_date;
         $cultural_events->end_date     = $request->end_date ;
-        $cultural_events->stand_out    = $request->stand_out ;
+        $cultural_events->user_id      = $request->user_id;
+
+        if ($request->hasFile('file')) {
+            $file = time().'.'.$request->file->extension();
+            $request->file->move(public_path('imgs'), $file);
+            $cultural_events->file = 'imgs/'.$file;
+        }
+       
         if($cultural_events->save()) {
-            return redirect('cultural_events')->with('message', 'El evento fue modificado con Exito!');
+            return redirect('cultural_events')->with('message', 'El Evento:  '.$cultural_events->name.'  fué Modificado con Éxito!');
         }
     }
 
@@ -113,23 +136,8 @@ class CulturalEventController extends Controller
     {
         $cultural_events = Cultural_event::find($id);
          if($cultural_events->delete()) {
-            return redirect('cultural_events')->with('message', 'El evento fue eliminado con Exito!');
+            return redirect('cultural_events')->with('message', 'El Evento:  '.$cultural_events->name.'  fué eliminado con Éxito!');
         }
     }
-    public function pdf() {
-        //dd('Descargar PDF');
-        $cultural_events = Cultural_event::all();
-        $pdf = \PDF::loadView('cultural_events.pdf', compact('cultural_events'));
-        return $pdf->download('allcultural_events.pdf');
-    }
-
-    public function excel() {
-        return \Excel::download(new Cultural_eventExport, 'allcultural_events.xlsx');
-    }
-
-    public function import(Request $request) {
-        $file = $request->file('file');
-        \Excel::import(new Cultural_eventImport, $file);
-        return redirect()->back()->with('message', 'Los eventos se importaron con exito!');
-    }
+   
 }

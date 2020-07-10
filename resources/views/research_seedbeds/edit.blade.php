@@ -17,7 +17,7 @@
 					@method('PUT')
 					<input type="hidden" name="id" value="{{ $research_seedbeds->id }}">
 					<div class="form-group">
-						<input type="text" class="form-control @error('name_research_seedbed') is-invalid @enderror" name="name_research_seedbed" value="{{ old('name_research_seedbed', $research_seedbeds->name_research_seedbed) }}" placeholder="Nombre del Semillero">
+						<input type="text" class="form-control @error('name_research_seedbed') is-invalid @enderror" name="name_research_seedbed" value="{{ old('name_research_seedbed', $research_seedbeds->name_research_seedbed) }}" placeholder="Nombre">
 						@error('name_research_seedbed')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
 					</div>
 
 					<div class="form-group">
-					<input type="date" class="form-control @error('days') is-invalid @enderror" name="days" value="{{ old('days', $research_seedbeds->days) }}" placeholder="Dias del semillero">
+					<input type="date" class="form-control @error('days') is-invalid @enderror" name="days" value="{{ old('days', $research_seedbeds->days) }}" placeholder="Días">
 					@error('days')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -46,7 +46,7 @@
 					
 
 					<div class="form-group">
-						<input type="time" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ old('start_date', $research_seedbeds->start_date) }}" placeholder="Hora inicio">
+						<input type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ old('start_date', $research_seedbeds->start_date) }}" placeholder="Fecha Inicio">
 						@error('start_date')
 	                        <span class="invalid-feedback" role="alert">
 	                            <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
 					</div>
 
 					<div class="form-group">
-						<input type="time" class="form-control @error('end_date') is-invalid @enderror" name="end_date" value="{{ old('end_date', $research_seedbeds->end_date) }}" placeholder="Hora fin">
+						<input type="date" class="form-control @error('end_date') is-invalid @enderror" name="end_date" value="{{ old('end_date', $research_seedbeds->end_date) }}" placeholder="Fecha Fin">
 						@error('end_date')
 	                        <span class="invalid-feedback" role="alert">
 	                            <strong>{{ $message }}</strong>

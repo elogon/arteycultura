@@ -32,7 +32,7 @@
 						<input type="file" name="image" id="photo" class="d-none" accept="image/*">
 						<br>
 						<div class="text-center @error('image') is-invalid @enderror">
-							<img id="preview" class="img-thumbnail" src="{{ asset('imgs/no-photo.png') }}" width="120px">
+							<img id="preview" class="img-thumbnail" src="{{ asset('imgs/no-category.png') }}" width="120px">
 						</div>
 						@error('image')
                             <span class="invalid-feedback" role="alert">

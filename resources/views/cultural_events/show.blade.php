@@ -1,48 +1,43 @@
 @extends('layouts.app')
-@section('title', 'Consultar Usuarios')
+@section('title', 'Consultar Eventos')
 
 @section('content')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 offset-2">
-				<h1> <i class="fa fa-search"></i> Consultar Usuarios</h1>
+				<h1> <i class="fa fa-search"></i> Consultar Eventos</h1>
 				<hr>
-				<a href="{{ url('users') }}"> 
+				<a href="{{ url('cultural_events') }}"> 
 					<i class="fa fa-arrow-left"></i>
-					Ir a Lista de Usuarios
+					Ir a Lista de Eventos
 				</a>
 				<br><br>
 				<table class="table table-striped">
 					<tr>
-						<th>Nombre Completo:</th>
-						<td>{{ $user->fullname }}</td>
+						<th>Nombre:</th>
+						<td>{{ $cultural_events->name }}</td>
 					</tr>
 					<tr>
-						<th>Tipo Documento:</th>
-						<td>{{ $user->document_type }}</td>
+						<th>Descripción:</th>
+						<td>{{ $cultural_events->description }}</td>
 					</tr>
 					<tr>
-						<th>Número documento:</th>
-						<td>{{ $user->num_document }}</td>
+						<th>Archivo:</th>
+						<td>{{ $cultural_events->file }}</td>
 					</tr>
 					<tr>
-						<th>Email:</th>
-						<td>{{ $user->email }}</td>
+						<th>Fecha Inicio:</th>
+						<td>{{ $cultural_events->start_date }}</td>
 					</tr>
 					<tr>
-						<th>Rol:</th>
-						<td>{{ $user->role }}</td>
+						<th>Fecha Fin:</th>
+						<td>{{ $cultural_events->end_date }}</td>
 					</tr>
 					<tr>
-						<th>Estado:</th>
-						<td>
-							@if ($user->status == "1")
-	                            <span class="btn btn-success">Activo</span>
-	                        @else
-	                            <span class="btn btn-danger">Inactivo</span>    
-	                        @endif
-						</td>
-					</tr>	
+						<th>Usuario:</th>
+						<td>{{ $art->user->fullname }}</td>
+					</tr>
+						
 				</table>
 
 			</div>

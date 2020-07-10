@@ -20,7 +20,7 @@
 						Importar Usuarios
 					</button>
 				</form>
-				|
+				
 				<a href="{{ url('generate/pdf/users') }}" class="btn btn-custom" >
 					<i class="fa fa-file-pdf"></i> 
 					Reporte PDF
@@ -71,4 +71,5 @@
 			</div>
 		</div>
 	</div>
+	@include('menu.menu');
 @endsection
