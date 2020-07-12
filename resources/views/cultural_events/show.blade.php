@@ -2,6 +2,7 @@
 @section('title', 'Consultar Eventos')
 
 @section('content')
+@include('menu.menu')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 offset-2">
@@ -34,8 +35,10 @@
 						<td>{{ $cultural_events->end_date }}</td>
 					</tr>
 					<tr>
-						<th>Usuario:</th>
-						<td>{{ $cultural_events->user->fullname }}</td>
+						<th>Categoría:</th>
+						<td>
+							<img src="{{ asset($art->category->image) }}" class="img-thumbnail" width="100px">
+						</td>
 					</tr>
 						
 				</table>

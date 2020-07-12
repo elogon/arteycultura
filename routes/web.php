@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('menu', function () {
+    return view('welcome');
+});
 
 // auth rutas
 Auth::routes();
@@ -25,7 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UserController');
 Route::resource('categories', 'CategoryController');
 Route::resource('publications', 'PublicationController');
-Route::resource('training_programs', 'Training_programController');
+Route::resource('training_programs', 'TrainingProgramController');
 Route::resource('quarters','QuartersController');
 Route::resource('research_seedbeds','ResearchSeedbedController');
 Route::resource('cultural_events','CulturalEventController');

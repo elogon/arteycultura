@@ -10,7 +10,7 @@ class Training_program extends Model
 {
     protected $fillable = [
     	'name_program',
-    	'id_program'
+    	'cod_program'
     ];
 
 }	

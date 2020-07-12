@@ -2,6 +2,7 @@
 @section('title', 'Modificar Evento')
 
 @section('content')
+@include('menu.menu')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 offset-2">
@@ -72,13 +73,13 @@
 					</div>
 
 					<div class="form-group">
-						<select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
-							<option value="">Seleccione Usuario...</option>
-							@foreach ($users as $user)
-								<option value="{{ $user->id }}" @if (old('user_id', $art->user_id) == $user->id) selected @endif>{{ $user->fullname }}</option>
+						<select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+							<option value="">Seleccione Categoría...</option>
+							@foreach ($cats as $cat)
+								<option value="{{ $cat->id }}" @if (old('category_id') == $cat->id) selected @endif>{{ $cat->name }}</option>
 							@endforeach
 						</select>
-						@error('user_id')
+						@error('category_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -86,14 +87,12 @@
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-custom">
-							<i class="fa fa-pen"></i>
-							Modificar
-						</button>
+						<input type="submit" class="btn btn-custom" value="Guardar"> <i class="fa fa-save"></i></input>
+						<input type="reset" class="btn btn-custom" value="Limpiar Formulario">
 					</div>
 				</form>
 			</div>
 				</div>
 			</div>
-			@include('menu.menu');
+			
 			@endsection

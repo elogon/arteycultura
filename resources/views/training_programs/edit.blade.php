@@ -27,7 +27,7 @@
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control @error('cod_program') is-invalid @enderror" name="cod_program" value="{{ old('cod_program', $training_programs->cod_program) }}" placeholder="Hora inicio">
+						<input type="number" class="form-control @error('cod_program') is-invalid @enderror" name="cod_program" value="{{ old('cod_program', $training_programs->cod_program) }}" placeholder="Código Programa de Formación">
 						@error('cod_program')
 	                        <span class="invalid-feedback" role="alert">
 	                            <strong>{{ $message }}</strong>

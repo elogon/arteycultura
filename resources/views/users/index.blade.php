@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Lista de Usuarios')
 
+
 @section('content')
+@include('menu.menu')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -71,5 +73,5 @@
 			</div>
 		</div>
 	</div>
-	@include('menu.menu');
+	
 @endsection

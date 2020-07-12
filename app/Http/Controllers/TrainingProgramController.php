@@ -16,8 +16,8 @@ class TrainingProgramController extends Controller
      */
     public function index()
     {
-        $trainig_programs = Training_program::paginate(20);
-        return view('trainig_programs.index')->with('trainig_programs', $trainig_programs); 
+        $training_programs = Training_program::paginate(20);
+        return view('training_programs.index')->with('training_programs', $training_programs); 
     }
 
     /**
@@ -27,7 +27,7 @@ class TrainingProgramController extends Controller
      */
     public function create()
     {
-        return view('trainig_programs.create');
+        return view('training_programs.create');
     }
 
     /**
@@ -38,12 +38,12 @@ class TrainingProgramController extends Controller
      */
     public function store(TrainingProgramRequest $request)
     {
-        $trainig_programs = new Training_program;
-        $trainig_programs->name_program  = $request->name_program;
-        $trainig_programs->cod_program   = $request->cod_program;
+        $training_programs = new Training_program;
+        $training_programs->name_program  = $request->name_program;
+        $training_programs->cod_program   = $request->cod_program;
 
-        if($trainig_programs->save()) {
-            return redirect('trainig_programs')->with('message', 'El Programa de Formación: '.$trainig_programs->name_program.' fue adicionada con Exito!');
+        if($training_programs->save()) {
+            return redirect('training_programs')->with('message', 'El Programa de Formación: '.$training_programs->name_program.' fue adicionada con Exito!');
         }
     }
 
@@ -55,8 +55,8 @@ class TrainingProgramController extends Controller
      */
     public function show($id)
     {
-         $trainig_programs = Training_program::findOrFail($id);
-        return view('trainig_programs.show')->with('trainig_programs', $trainig_programs);
+         $training_programs = Training_program::findOrFail($id);
+        return view('training_programs.show')->with('training_programs', $training_programs);
     }
 
     /**
@@ -67,8 +67,8 @@ class TrainingProgramController extends Controller
      */
     public function edit( $id)
     {
-         $trainig_programs = Training_program::findOrFail($id);
-        return view('trainig_programs.edit')->with('trainig_programs', $trainig_programs);
+         $training_programs = Training_program::findOrFail($id);
+        return view('training_programs.edit')->with('training_programs', $training_programs);
     }
 
     /**
@@ -80,12 +80,12 @@ class TrainingProgramController extends Controller
      */
     public function update(TrainingProgramRequest $request, $id)
     {
-        $trainig_programs = new Training_program;
-        $trainig_programs->name_program  = $request->name_program;
-        $trainig_programs->cod_program   = $request->cod_program;
+        $training_programs = new Training_program;
+        $training_programs->name_program  = $request->name_program;
+        $training_programs->cod_program   = $request->cod_program;
          
-        if($trainig_programs->save()) {
-            return redirect('trainig_programs')->with('message', 'El Programa de Formación: '.$trainig_programs->name_program.' fue modificada con Exito!');
+        if($training_programs->save()) {
+            return redirect('training_programs')->with('message', 'El Programa de Formación: '.$training_programs->name_program.' fue modificada con Exito!');
         }
     }
 
@@ -97,10 +97,9 @@ class TrainingProgramController extends Controller
      */
     public function destroy( $id)
     {
-        $trainig_programs = Training_program::find($id);
-         if($trainig_programs->delete()) {
-            return redirect('trainig_programs')->with('message', 'El Programa de Formación: '.$trainig_programs->name_program.' fue eliminada con Exito!');
+        $training_programs = Training_program::find($id);
+         if($training_programs->delete()) {
+            return redirect('training_programs')->with('message', 'El Programa de Formación: '.$training_programs->name_program.' fue eliminada con Exito!');
         }
-    }
     }
 }

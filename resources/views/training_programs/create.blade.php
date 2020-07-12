@@ -26,7 +26,7 @@
 					</div>
 				
 					<div class="form-group">
-						<input type="text" class="form-control @error('cod_program') is-invalid @enderror" name="cod_program" value="{{ old('cod_program') }}" placeholder="Código Programa de Formación">
+						<input type="number" class="form-control @error('cod_program') is-invalid @enderror" name="cod_program" value="{{ old('cod_program') }}" placeholder="Código Programa de Formación">
 						@error('cod_program')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -36,8 +36,9 @@
 
 
 					
-					<div class="container">
-						<button type="submit" class="btn btn-warning"> <i class="fa fa-save"></i> Guardar </button>
+					<div class="form-group">
+						<input type="submit" class="btn btn-custom" value="Guardar"></input>
+						<input type="reset" class="btn btn-custom" value="Limpiar Formulario">
 					</div>
 					
 				</form>

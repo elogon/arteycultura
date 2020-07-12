@@ -57,7 +57,21 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Contraseña">
+                         @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Confirmar Contraseña">
+                         @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="form-group">

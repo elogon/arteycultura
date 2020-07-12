@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1> <i class="fa fa-calendar-alt"></i> Lista de Programa de Formación</h1>
+				<h1> <i class="fa fa-university"></i> Lista de Programa de Formación</h1>
 				<hr>
 				<a href="{{ url('training_programs/create') }}" class="btn btn-custom"> 
 					<i class="fa fa-plus"></i> 
@@ -48,8 +48,6 @@
 						@endforeach
 					</tbody>
 				</table>
-					{{ $training_programs
-						->links() }}
 			</div>
 		</div>
 	</div>

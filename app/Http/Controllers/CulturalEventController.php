@@ -30,9 +30,8 @@ class CulturalEventController extends Controller
      */
     public function create()
     {
-        return view('cultural_events.create')
-             ->with('cultural_events', $cultural_events)
-             ->with('users', $users);
+        $cats  = Category::all();
+        return view('cultural_events.create')->with('cats', $cats);
     }
 
     /**
@@ -44,11 +43,11 @@ class CulturalEventController extends Controller
     public function store(CulturalEventRequest $request)
     {
         $cultural_events = new Cultural_event;
-        $cultural_events->name         = $request->name;
-        $cultural_events->description  = $request->description;
-        $cultural_events->start_date   = $request->start_date;
-        $cultural_events->end_date     = $request->end_date ;
-        $cultural_events->user_id      = $request->user_id;
+        $cultural_events->name             = $request->name;
+        $cultural_events->description      = $request->description;
+        $cultural_events->start_date       = $request->start_date;
+        $cultural_events->end_date         = $request->end_date ;
+        $cultural_events->category_id      = $request->category_id;
 
         if ($request->hasFile('file')) {
             $file = time().'.'.$request->file->extension();
@@ -82,11 +81,11 @@ class CulturalEventController extends Controller
      */
     public function edit($id)
     {
+        $cats  = Category::all();
         $cultural_events = Cultural_event::find($id);
-        $users = User::where('role', '=', 'Apprentice')->get();
         return view('cultural_events.edit')
              ->with('cultural_events', $cultural_events)
-             ->with('users', $users);
+             ->with('cats', $cats);
     }
 
     /**
@@ -99,11 +98,11 @@ class CulturalEventController extends Controller
     public function update(CulturalEventRequest $request, $id)
     {
         $cultural_events = Cultural_event::find($id);
-        $cultural_events->name         = $request->name;
-        $cultural_events->description  = $request->description;
-        $cultural_events->start_date   = $request->start_date;
-        $cultural_events->end_date     = $request->end_date ;
-        $cultural_events->user_id      = $request->user_id;
+        $cultural_events->name             = $request->name;
+        $cultural_events->description      = $request->description;
+        $cultural_events->start_date       = $request->start_date;
+        $cultural_events->end_date         = $request->end_date ;
+        $cultural_events->category_id      = $request->category_id;
 
         if ($request->hasFile('file')) {
             $file = time().'.'.$request->file->extension();

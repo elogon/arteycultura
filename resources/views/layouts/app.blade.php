@@ -9,6 +9,7 @@
 
     <title>@yield('title')</title>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -22,10 +23,13 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-custom shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
+
+
+               <img src="{{asset('imgs/logo.png')}}" alt="" height="60px" width="60px">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Arte y Cultura
+
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,6 +45,15 @@
                             </a>
                         </li>
                     </ul>
+
+                    <ul class="nav dropdown-menu-right">
+                        <li class="nav-menu">
+                            <a class="nav-link" href="{{ url('menu') }}">
+                                <i class="fa fa-menu"></i>
+                                Menú
+                            </a>
+                        </li>
+                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -51,7 +64,7 @@
                                     {{ __('custom.login') }}
                                 </a>
                             </li>
-                            <li class="nav-item"><span class="nav-link">|</span></li>
+                            <li class="nav-item"><span class="nav-link"></span></li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">
@@ -66,7 +79,7 @@
                                     {{ Auth::user()->fullname }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (Auth::user()->role == "Admin")
+                                    @if (Auth::user()->role == "1")
                                         <a class="dropdown-item" href="{{ url('mydata') }}">
                                             <i class="fa fa-user"></i> 
                                             Mi Cuenta
@@ -88,7 +101,7 @@
                                              Módulo Trimestre
                                         </a>
                                         <a class="dropdown-item" href="{{ url('trainig_programs') }}">
-                                            <i class="fa fa-list"></i>
+                                            <i class="fa fa-university"></i>
                                              Módulo Programas de Formación
                                         </a>
                                         <a class="dropdown-item" href="{{ url('publications') }}">
@@ -99,7 +112,7 @@
                                             <i class="fa fa-th-list"></i>
                                              Módulo Semilleros
                                         </a>
-                                    @elseif(Auth::user()->role == 'Apprentice')
+                                    @elseif(Auth::user()->role == '2')
                                         <a class="dropdown-item" href="{{ url('mydata') }}">
                                             <i class="fa fa-address-card"></i>
                                              Mis Datos 
@@ -142,6 +155,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}" defer></script>
     <script src="{{ asset('js/sweetalert2@9.js') }}"></script>
+    <script src="{{ asset('js/jquery.form-validator.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             /* - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -166,7 +180,7 @@
                    Swal.fire(
                         'Felicitaciones',
                         '{{ session('message') }}',
-                        'success'
+                        'warning'
                     );
                @endif
                /* - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -178,6 +192,9 @@
                     );
                @endif
             /* - - - - - - - - - - - - - - - - - - - - - - - - - */
+                  $(document).ready(function() {
+                    $ .validate({ lang: 'es' });
+                  });
              /* - - - - - - - - - - - - - - - - - - - - - - - - - */
             $('.btn-upload').click(function(event) {
                 $('#photo').click();
@@ -211,6 +228,8 @@
                 },1600);
             });
             /* - - - - - - - - - - - - - - - - - - - - - - - - - */
+            
+            /* - - - - - - - - - - - - - - - - - - - - - - - - - */
             // Import Users
             $('.btn-excel').click(function(event) {
                 $('#file').click();
@@ -219,22 +238,17 @@
                  $(this).parent().submit();
              });
              /* - - - - - - - - - - - - - - - - - - - - - - - - - */
-              var owl = $('.owl-carousel');
-              owl.owlCarousel({
-                margin: 10,
-                nav: true,
-                loop: true,
-                responsive: {
-                  0: {
-                    items: 1
-                  },
-                  600: {
-                    items: 2
-                  },
-                  1000: {
-                    items: 3
-                  }
-                }
+              // Activate Carousel
+              $("#myCarousel").carousel();
+
+              // Enable Carousel Indicators
+              $(".item").click(function(){
+                $("#myCarousel").carousel(1);
+              });
+
+              // Enable Carousel Controls
+              $(".carousel-control-prev").click(function(){
+                $("#myCarousel").carousel("prev");
               });
             /* - - - - - - - - - - - - - - - - - - - - - - - - - */
         });

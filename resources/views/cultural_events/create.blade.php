@@ -2,6 +2,7 @@
 @section('title', 'Adicionar Eventos')
 
 @section('content')
+
 		<div class="container">
 		<div class="row">
 			<div class="col-md-6 offset-3">
@@ -34,12 +35,13 @@
                         @enderror
 					</div>
 
-					<div class="form-group">
+					<form action="btn-upload" method="post" enctype="multipart/form-data">
 						<button class="btn btn-block btn-custom btn-upload" type="button">
 							<i class="fa fa-upload"></i>
 							Seleccionar Archivo
 						</button>
-						<input type="file" name="file" id="file" class="d-none" accept="file/*">
+						<input type="file" name="file" id="file" class="d-none">
+						<input type="submit" name="submit" value="btn-upload">
 						<br>
 						<div class="text-center @error('file') is-invalid @enderror">
 							<img id="preview" class="img-thumbnail" src="{{ asset('imgs/no-file.png') }}" width="120px">
@@ -52,7 +54,7 @@
 					</div>
 
 					<div class="form-group">
-						<input type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ old('start_date') }}" placeholder="Fecha Inicio:">
+						<input type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date" data-validation-format="dd/mm/yyyy"value="{{ old('start_date') }}" placeholder="Fecha Inicio:">
 						@error('start_date')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -70,13 +72,13 @@
 					</div>
 
 					<div class="form-group">
-						<select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
-							<option value="">Seleccione Usuario...</option>
-							@foreach ($users as $user)
-								<option value="{{ $user->id }}" @if (old('user_id') == $user->id) selected @endif>{{ $user->fullname }}</option>
+						<select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+							<option value="">Seleccione Categoría...</option>
+							@foreach ($cats as $cat)
+								<option value="{{ $cat->id }}" @if (old('category_id') == $cat->id) selected @endif>{{ $cat->name }}</option>
 							@endforeach
 						</select>
-						@error('user_id')
+						@error('category_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -86,12 +88,13 @@
 
 	
 					<div class="form-group">
-						<button type="submit" class="btn btn-custom"> <i class="fa fa-save"></i> Guardar </button>
+						<input type="submit" class="btn btn-custom" value="Guardar"></input>
+						<input type="reset" class="btn btn-custom" value="Limpiar Formulario">
 					</div>
 					
 				</form>
 			</div>
 		</div>
 	</div>
-	@include('menu.menu');
+	
 @endsection

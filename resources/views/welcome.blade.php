@@ -1,57 +1,44 @@
 @extends('layouts.app')
 @section('title', 'Página Inicial')
 
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 @section('content')
-    
-    <br>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
-  </ol>
+
+<div class="row justify-content-center">
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" class="col-sm-8">
+
+  <!-- Indicators --> 
+  <ul class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ul>
+  
+  <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="{{ asset('imgs/im1.jpg') }}" alt="First slide" width="1000px"
-  height="500px">
+      <img src="{{ asset('imgs/fondo1.png') }}" width="1100" height="500">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="{{ asset('imgs/im2.jpg') }}" alt="Second slide" width="1000px"
-  height="500px">
+      <img src="{{ asset('imgs/arte3.png') }}" alt="Chicago" width="1100" height="500">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="{{ asset('imgs/im3.jpg') }}" alt="Third slide" width="1000px"
-  height="500px">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{ asset('imgs/im4.jpg') }}" alt="Third slide" width="1000px"
-  height="500px">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{ asset('imgs/im5.jpg') }}" alt="Third slide" width="1000px"
-  height="500px">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{ asset('imgs/im6.jpg') }}" alt="Third slide" width="1000px"
-  height="500px">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{ asset('imgs/im7.jpg') }}" alt="Third slide" width="1000px"
-  height="500px">
+      <img src="{{ asset('imgs/creatividad.png') }}" alt="New York" width="1100" height="500">
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
+  <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
   </a>
 </div>
+</div>
+</div>
+<!---------------------------------------------------->
+
 @endsection

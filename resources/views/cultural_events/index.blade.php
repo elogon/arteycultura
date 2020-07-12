@@ -2,6 +2,7 @@
 @section('title', 'Lista de Eventos')
 
 @section('content')
+@include('menu.menu')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -24,6 +25,7 @@
 							<th>Archivo</th>
 							<th>Fecha Inicio</th>
 							<th>Fecha Fin</th>
+							<th class="d-none d-sm-table-cell">Categoría</th>
 							<td>Acciones</td>
 						</tr>
 					</thead>
@@ -35,6 +37,9 @@
 								<td>{{ $cultural_events->file }}</td>
 								<td>{{ $cultural_events->start_date}}</td>
 								<td>{{ $cultural_events->end_date}}</td>
+								<td class="d-none d-sm-table-cell">
+									<img src="{{ asset($cultural_events->category->image) }}" width="60px">
+								</td>
 								<td>
 									<a href="{{ url('cultural_events/'.$cultural_events->id) }}" class="btn btn-sm btn-custom">
 										<i class="fa fa-search"></i>
@@ -54,10 +59,8 @@
 						@endforeach
 					</tbody>
 				</table>
-				
-				{{ $cultural_events->links() }}
 			</div>
 		</div>
 	</div>
-	 @include('menu.menu');
+	 
 @endsection

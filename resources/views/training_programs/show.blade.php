@@ -15,11 +15,11 @@
 				<table class="table table-striped">
 					
 					<tr>
-						<th>Nombre:</th>
+						<th>Nombre Programa de Formación:</th>
 						<td>{{ $training_programs->name_program }}</td>
 					</tr>
 					<tr>
-						<th>Código Programa:</th>
+						<th>Código Programa de Formación:</th>
 						<td>{{ $training_programs->cod_program }}</td>
 					</tr>
 			</div>
