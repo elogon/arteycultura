@@ -1,22 +1,24 @@
 @extends('layouts.app')
-@section('title', 'Adicionar Publicaciones')
+@section('title', 'Adicionar Publicación')
 
 @section('content')
+
 		<div class="container">
 		<div class="row">
 			<div class="col-md-6 offset-3">
-				<h1> <i class="fa fa-plus"></i> Adicionar Publicaciones</h1>
+				<h1> <i class="fa fa-plus"></i> Adicionar Publicación</h1>
 				<hr>
 				<a href="{{ url('publications') }}"> 
-					<i class="fa fa-arrow-left"></i>
+					<i class="fa fa-list"></i>
 					Ir a Lista de Publicaciones
 				</a>
 				<br><br>
 				
 				<form action="{{ url('publications') }}" method="post" enctype="multipart/form-data">
 					@csrf
+
 					<div class="form-group">
-						<input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Titulo">
+						<input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Titulo:">
 						@error('title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -25,7 +27,7 @@
 					</div>
 
 					<div class="form-group">
-						<textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Descripción">{{ old('description') }}</textarea>
+						<input type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="Descripción:">
 						@error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -38,7 +40,7 @@
 							<i class="fa fa-upload"></i>
 							Seleccionar Archivo
 						</button>
-						<input type="file" name="file" id="file" class="d-none" accept="file/*">
+						<input type="file" name="file" id="photo" class="d-none">
 						<br>
 						<div class="text-center @error('file') is-invalid @enderror">
 							<img id="preview" class="img-thumbnail" src="{{ asset('imgs/no-file.png') }}" width="120px">
@@ -52,9 +54,9 @@
 
 					<div class="form-group">
 						<select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
-							<option value="">Seleccione Usuario...</option>
-							@foreach ($users as $user)
-								<option value="{{ $user->id }}" @if (old('user_id') == $user->id) selected @endif>{{ $user->fullname }}</option>
+							<option value="">Seleccione el aprendiz...</option>
+							@foreach ($users as $users)
+								<option value="{{ $users->id }}" @if (old('user_id') == $users->id) selected @endif>{{ $users->fullname }}</option>
 							@endforeach
 						</select>
 						@error('user_id')
@@ -64,17 +66,16 @@
                         @enderror
 					</div>
 
-					
 
+	
 					<div class="form-group">
-						<button type="submit" class="btn btn-custom" id="custom">
-						<i class="fa fa-save"></i>
-						 Guardar 
-						</button>
+						<input type="submit" class="btn btn-custom" value="Guardar"></input>
+						<input type="reset" class="btn btn-custom" value="Limpiar Formulario">
 					</div>
 					
 				</form>
 			</div>
 		</div>
 	</div>
+	
 @endsection

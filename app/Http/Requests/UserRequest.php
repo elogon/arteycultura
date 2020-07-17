@@ -42,7 +42,7 @@ class UserRequest extends FormRequest
             'num_document'  => 'required|numeric',
             'email'         => 'required|email|unique:users',
             'password'      => 'required|confirmed',
-            'rol_id'        => 'numeric'
+            'rol_id'        => 'required'
              ];
         
         }   
@@ -59,7 +59,7 @@ class UserRequest extends FormRequest
             'email.unique'             => 'El campo Correo Electrónico ya está en uso',   
             'password.required'        => 'El campo Contraseña es obligatorio',
             'password.confirmed'       => 'El campo Confirmación de Contraseña no coincide',
-            'rol_id.numeric'           => 'El campo rol id es obligatorio'
+            'rol_id.required'          => 'El campo rol id es obligatorio'
         ];
     }
 } 

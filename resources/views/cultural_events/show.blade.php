@@ -2,7 +2,6 @@
 @section('title', 'Consultar Eventos')
 
 @section('content')
-@include('menu.menu')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 offset-2">
@@ -37,7 +36,7 @@
 					<tr>
 						<th>Categoría:</th>
 						<td>
-							<img src="{{ asset($art->category->image) }}" class="img-thumbnail" width="100px">
+							{{ $cultural_events->category->name }}>
 						</td>
 					</tr>
 						

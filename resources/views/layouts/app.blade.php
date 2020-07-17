@@ -8,10 +8,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
+ 
+
+    <!-- Ionic icons-->
+    <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;800&display=swap">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('imgs//favicon.png') }}" />
 
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -19,24 +28,22 @@
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark btn-dark shadow-sm">
             <div class="container">
-
-
-               <img src="{{asset('imgs/logo.png')}}" alt="" height="60px" width="60px">
                 <a class="navbar-brand" href="{{ url('/') }}">
 
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedConten" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('home') }}">
@@ -44,13 +51,28 @@
                                 Inicio
                             </a>
                         </li>
-                    </ul>
-
-                    <ul class="nav dropdown-menu-right">
-                        <li class="nav-menu">
-                            <a class="nav-link" href="{{ url('menu') }}">
-                                <i class="fa fa-menu"></i>
-                                Menú
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('users') }}">
+                                 <i class="fa fa-user"></i>
+                                Usuarios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('categories') }}">
+                                 <i class="fa fa-layer-group"></i>
+                                Categorias
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('cultural_events') }}">
+                                <i class="fa fa-calendar-check"></i>
+                                Eventos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('research_seedbeds') }}">
+                                 <i class="fa fa-seedbed"></i>
+                                Semilleros
                             </a>
                         </li>
                     </ul>
@@ -64,7 +86,7 @@
                                     {{ __('custom.login') }}
                                 </a>
                             </li>
-                            <li class="nav-item"><span class="nav-link"></span></li>
+                            <li class="nav-item"><span class="nav-link">|</span></li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">
@@ -79,7 +101,7 @@
                                     {{ Auth::user()->fullname }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (Auth::user()->role == "1")
+                                    @if (Auth::user()->role == "Admin")
                                         <a class="dropdown-item" href="{{ url('mydata') }}">
                                             <i class="fa fa-user"></i> 
                                             Mi Cuenta
@@ -105,14 +127,14 @@
                                              Módulo Programas de Formación
                                         </a>
                                         <a class="dropdown-item" href="{{ url('publications') }}">
-                                            <i class="fa fa-th-list"></i>
+                                            <i class="fa fa-list-alt"></i>
                                              Módulo Publicaciones
                                         </a>
                                          <a class="dropdown-item" href="{{ url('research_seedbeds') }}">
-                                            <i class="fa fa-th-list"></i>
+                                            <i class="fa fa-seedbed"></i>
                                              Módulo Semilleros
                                         </a>
-                                    @elseif(Auth::user()->role == '2')
+                                    @elseif(Auth::user()->role == 'Apprentice')
                                         <a class="dropdown-item" href="{{ url('mydata') }}">
                                             <i class="fa fa-address-card"></i>
                                              Mis Datos 
@@ -156,6 +178,10 @@
     <script src="{{ asset('js/owl.carousel.min.js') }}" defer></script>
     <script src="{{ asset('js/sweetalert2@9.js') }}"></script>
     <script src="{{ asset('js/jquery.form-validator.min.js') }}"></script>
+    <script src="{{ asset('js/menu.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js')  }}"></script>
     <script>
         $(document).ready(function() {
             /* - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -228,7 +254,16 @@
                 },1600);
             });
             /* - - - - - - - - - - - - - - - - - - - - - - - - - */
-            
+            $("#showmenu").click(function(e){
+            $("#menu").toggleClass("show");
+            });
+            $("#menu a").click(function(event){
+                if($(this).next('ul').length){
+            event.preventDefault();
+                    $(this).next().toggle('fast');
+                    $(this).children('i:last-child').toggleClass('fa-caret-down fa-caret-left');
+                }
+            });
             /* - - - - - - - - - - - - - - - - - - - - - - - - - */
             // Import Users
             $('.btn-excel').click(function(event) {

@@ -50,12 +50,16 @@ class CulturalEventController extends Controller
         $cultural_events->category_id      = $request->category_id;
 
         if ($request->hasFile('file')) {
-            $file = time().'.'.$request->file->extension();
-            $request->file->move(public_path('imgs'), $file);
-            $cultural_events->file = 'imgs/'.$file;
+            $file = $request->file('file');
+            $name = $file->getClientOriginalName();
+            $request->file->move(public_path('imgs'), $name);
+            $cultural_events->file = 'imgs/'.$name;
         }
-      
-
+        //if ($request->hasFile('image')) {
+            //$file = time().'.'.$request->image->extension();
+            //$request->image->move(public_path('imgs'), $file);
+            //$cat->image = 'imgs/'.$file;
+        //}
         if($cultural_events->save()) {
                 return redirect('cultural_events')->with('message', 'El Evento:  '.$cultural_events->name.'  fué adicionado con Éxito!');
             }

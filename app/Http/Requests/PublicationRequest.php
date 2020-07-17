@@ -26,17 +26,17 @@ class PublicationRequest extends FormRequest
         if ($this->method() == 'PUT') {
             // Form edit
             return [
-            'title'          => 'required|min:4|unique',
-            'description'    => 'required|min:4',
-            'file'           => 'required|file|max:2000',
+            'title'          => 'required',
+            'description'    => 'required',
+            'file'           => 'required|max:2000',
             'user_id'        => 'required'
         ];
         }else{
             // Form create
             return [
-            'title'         => 'required|min:4|unique',
+            'title'         => 'required',
             'description'   => 'required',
-            'file'          => 'required|file|max:2000',
+            'file'          => 'required|max:2000',
             'user_id'       => 'required'
             
             ];
@@ -45,15 +45,9 @@ class PublicationRequest extends FormRequest
     public function messages() {
         return [
             'title.required'         => 'El campo Titulo es obligatorio',
-            'title.min'              => 'El campo Titulo debe tener mínimo :min caracteres',
-            'title.unique'           => 'El campo Titulo debe ser único',
             'description.required'   => 'El campo Descripción es obligatorio',
-            'description.min'        => 'El campo descripción debe tener mínimo :min caracteres',
-            'file.required'          => 'El campo archivo es obligatorio',
-            'file.file'              => 'El campo archivo debe ser un tipo archivo',
-            'file.max'               => 'El campo archivo no debe pasar más de :max kilobites.',
-            'start_date.required'    => 'El campo fecha inicio es obligatorio',
-            'end_date.required'      => 'El campo fecha fin es obligatorio',
+            'file.required'          => 'El campo Archivo es obligatorio', 
+            'file.max'               => 'El campo Archivo no debe pesar más de :max kilobytes.',
             'user_id.required'       => 'El campo usuario es obligatorio'
 
         ];

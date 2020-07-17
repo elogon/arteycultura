@@ -30,7 +30,6 @@ class ResearchSeedbedRequest extends FormRequest
             return [
             'name_research_seedbed'  => 'required|min:4',
             'description'            => 'required',
-            'num_document'           => 'required',
             'days'                   => 'required|date',
             'start_date'             => 'required|date',
             'end_date'               => 'required|date',
@@ -42,7 +41,6 @@ class ResearchSeedbedRequest extends FormRequest
              return [
             'name_research_seedbed'  => 'required|unique:research_seedbeds|min:4',
             'description'            => 'required',
-            'num_document'           => 'required',
             'days'                   => 'required|date',
             'start_date'             => 'required|date',
             'end_date'               => 'required|date', 
@@ -56,7 +54,6 @@ class ResearchSeedbedRequest extends FormRequest
         return [
             'name_research_seedbed.required'  => 'El campo Nombre Completo es obligatorio',
             'description.required'            => 'El campo Descripción es obligatorio',
-            'num_document.required'           => 'El campo Número de Documento es obligatorio',
             'days.required'                   => 'El campo Dias es obligatorio',
             'days.date'                       => 'El campo Dias debe ser un dato',
             'start_date.required'             => 'El campo Fecha Inicio es obligatorio',

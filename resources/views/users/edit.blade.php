@@ -2,7 +2,6 @@
 @section('title', 'Modificar Usuarios')
 
 @section('content')
-@include('menu.menu')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 offset-3">

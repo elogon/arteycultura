@@ -52,7 +52,7 @@ class CulturalEventRequest extends FormRequest
             'name.required'         => 'El campo Nombre es obligatorio',
             'description.required'  => 'El campo Descripción es obligatorio',
             'file.required'         => 'El campo Archivo es obligatorio',
-            'file.max'              => 'El campo Archivo no debe pasar más de :max kilobites.',
+            'file.max'              => 'El campo Archivo no debe pesar más de :max kilobytes.',
             'start_date.required'   => 'El campo Fecha Inicio es obligatorio',
             'start_date.date'       => 'El campo Fecha Inicio debe ser un dato',
             'end_date.required'     => 'El campo Fecha Fin es obligatorio',

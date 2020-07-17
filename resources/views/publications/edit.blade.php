@@ -1,23 +1,25 @@
 @extends('layouts.app')
-@section('title', 'Modificar Publicaciones')
+@section('title', 'Modificar Publicación')
 
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 offset-3">
-				<h1> <i class="fa fa-pen"></i> Modificar Publicaiones</h1>
+			<div class="col-md-8 offset-2">
+			<h1 class="fa fa-pen">Modificar  Publicación</h1>
 				<hr>
-				<a href="{{ url('publications') }}"> 
-					<i class="fa fa-arrow-left"></i>
-					Ir a Lista de Publicaciones
+				<a href="{{ url('publications') }}">
+					<i class="fas fa-list"></i>
+					Ir a lista de Publicaciones
 				</a>
 				<br><br>
-				<form action="{{ url('publications/'.$publication->id) }}" method="post" enctype="multipart/form-data">
+
+				<form action="{{ url('publications/'.$publications->id) }}" method="post" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
-					<input type="hidden" name="id" value="{{ $publication->id }}">
+					<input type="hidden" name="id" value="{{ $publications->id }}">
+					
 					<div class="form-group">
-						<input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title', $publication->title) }}" placeholder="Titulo">
+						<input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title', $publications->title) }}" placeholder="Titulo:">
 						@error('title')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -26,23 +28,23 @@
 					</div>
 
 					<div class="form-group">
-						<textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Descripción">{{ old('description', $publication->description) }}</textarea>
+						<input type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description', $publications->description) }}" placeholder="Descripción:">
 						@error('description')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
 					</div>
 
 					<div class="form-group">
-						<button class="btn btn-block btn-custom btn-upload" id="custom" type="button">
+						<button class="btn btn-block btn-custom btn-upload" type="button">
 							<i class="fa fa-upload"></i>
 							Seleccionar Archivo
 						</button>
-						<input type="file" name="file" id="file" class="d-none" accept="file/*">
+						<input type="file" name="file" id="photo" class="d-none">
 						<br>
-						<div class="text-center @error('image') is-invalid @enderror">
-							<img id="preview" class="img-thumbnail" src="{{ asset($publication->file) }}" width="120px">
+						<div class="text-center @error('file') is-invalid @enderror">
+							<img id="preview" class="img-thumbnail" src="{{ asset('imgs/no-file.png') }}" width="120px">
 						</div>
 						@error('file')
                             <span class="invalid-feedback" role="alert">
@@ -53,9 +55,9 @@
 
 					<div class="form-group">
 						<select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
-							<option value="">Seleccione Usuario...</option>
-							@foreach ($users as $user)
-								<option value="{{ $user->id }}" @if (old('user_id', $art->user_id) == $user->id) selected @endif>{{ $user->fullname }}</option>
+							<option value="">Seleccione el aprendiz...</option>
+							@foreach ($users as $users)
+								<option value="{{ $users->id }}" @if (old('user_id') == $users->id) selected @endif>{{ $users->fullname }}</option>
 							@endforeach
 						</select>
 						@error('user_id')
@@ -64,14 +66,13 @@
                             </span>
                         @enderror
 					</div>
-					
+
 					<div class="form-group">
-						<button type="submit" class="btn btn-custom" id="custom" > 
-						<i class="fa fa-pen"></i>
-						Modificar </button>
+						<input type="submit" class="btn btn-custom" value="Guardar"> <i class="fa fa-save"></i></input>
+						<input type="reset" class="btn btn-custom" value="Limpiar Formulario">
 					</div>
 				</form>
 			</div>
-		</div>
-	</div>
+				</div>
+			</div>
 @endsection

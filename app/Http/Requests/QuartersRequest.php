@@ -27,14 +27,16 @@ class QuartersRequest extends FormRequest
             // Form edit
             return [
             'num_quarter'      => 'required',
-            'start_date'       => 'required|datetime',
-            'end_date'         => 'required|datetime',
+            'start_date'       => 'required|date',
+            'end_date'         => 'required|date'
         ];
         }else{
             // Form create
             return [
             'num_quarter'      => 'required',
-        ];
+            'start_date'       => 'required|date',
+            'end_date'         => 'required|date'
+            ];
         }
         
     }
@@ -42,7 +44,9 @@ class QuartersRequest extends FormRequest
         return [
             'num_quarter.required'     => 'El campo Trimestre es obligatorio',
             'start_date.required'      => 'El campo fecha inicio es obligatorio',
-            'end_date.required'        => 'El campo fecha fin es obligatorio',
+            'start_date.date'          => 'El campo Fecha Inicio debe ser un dato',
+            'end_date.required'        => 'El campo fecha fin es obligatorio'
+            'end_date.date'            => 'El campo Fecha Fin debe ser un dato',
    
         ];
     }

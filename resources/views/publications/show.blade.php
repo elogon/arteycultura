@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title', 'Consultar Publicaciones')
+@section('title', 'Consultar Publicación')
 
 @section('content')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 offset-2">
-				<h1> <i class="fa fa-search"></i> Consultar Publicaciones</h1>
+				<h1> <i class="fa fa-search"></i> Consultar Publicación</h1>
 				<hr>
 				<a href="{{ url('publications') }}"> 
 					<i class="fa fa-arrow-left"></i>
@@ -13,11 +13,6 @@
 				</a>
 				<br><br>
 				<table class="table table-striped">
-					<tr>
-						<td colspan="2" class="text-center">
-							<img src="{{ asset($publications->file) }}" class="img-thumbnail" width="120px">
-						</td>
-					</tr>
 					<tr>
 						<th>Titulo:</th>
 						<td>{{ $publications->title }}</td>
@@ -27,9 +22,14 @@
 						<td>{{ $publications->description }}</td>
 					</tr>
 					<tr>
-						<th>Usuario:</th>
-						<td>{{ $publications->user->fullname }}</td>
+						<th>Archivo:</th>
+						<td>{{ $publications->file }}</td>
 					</tr>
+					<tr>
+						<th>Aprendices:</th>
+						<td>{{ $publications->users->fullname }}></td>
+					</tr>
+						
 				</table>
 
 			</div>

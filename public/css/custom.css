@@ -14,11 +14,11 @@
 
 }
 .bg-custom {
-	background-color: #FF8C00;
+	background-color: #f3b021;
 }
 
 .btn-custom {
-	background-color: #FF8C00;
+	background-color: #f3b021;
 	color: #fff;
 	transition: all 0.5s;
 }
@@ -83,4 +83,106 @@
 	100% {margin-left: -300%;}
 }
 
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: montserrat;
 
+}
+body{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+    background: linear-gradient(45deg,#F44336,#3F51B5);
+}
+
+p {
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.section{
+    width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 15px;
+    margin: 0 auto;
+}
+
+.card{
+    position: relative;
+    width: 320px;
+    height: 400px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 15px 60px rgba(0,0,0,.5)
+}
+
+
+.side{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .side.side1{
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.card .side.side1 h2 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: .5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.card .side.side2{
+    background: #111;
+    transition: .5s;
+}
+
+.card .side.side2:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,.1);
+}
+
+.card:hover .side.side2{
+    height: 60px;
+}
+
+
+.card:hover .side.side2 h2{
+    font-size: 2em;
+}
+.card .side.side2 h2{
+     margin: 0;
+    padding: 0;
+    font-size: 10em;
+    color: #fff;
+    transition: .5s;
+}
+
+.card:nth-child(1) .side.side2 {
+    background: linear-gradient(45deg,#00BCD4,#2196F3);
+}
+.card:nth-child(2) .side.side2 {
+    background: linear-gradient(45deg,#FFC107,#00BCD4);
+}
+.card:nth-child(3) .side.side2 {
+    background: linear-gradient(45deg,#FF5722,#E91E63);
+}

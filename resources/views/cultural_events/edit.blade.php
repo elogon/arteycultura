@@ -2,14 +2,13 @@
 @section('title', 'Modificar Evento')
 
 @section('content')
-@include('menu.menu')
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 offset-2">
+			<div class="col-md-6 offset-3">
 			<h1 class="fa fa-pen">Modificar  Evento</h1>
 				<hr>
 				<a href="{{ url('cultural_events') }}">
-					<i class="fas fa-list"></i>
+					<i class="fas fa-arrow-left"></i>
 					Ir a lista de Eventos
 				</a>
 				<br><br>
@@ -42,7 +41,7 @@
 							<i class="fa fa-upload"></i>
 							Seleccionar Archivo
 						</button>
-						<input type="file" name="file" id="file" class="d-none" accept="file/*">
+						<input type="file" name="file" id="photo" class="d-none">
 						<br>
 						<div class="text-center @error('file') is-invalid @enderror">
 							<img id="preview" class="img-thumbnail" src="{{ asset('imgs/no-file.png') }}" width="120px">
@@ -88,7 +87,6 @@
 
 					<div class="form-group">
 						<input type="submit" class="btn btn-custom" value="Guardar"> <i class="fa fa-save"></i></input>
-						<input type="reset" class="btn btn-custom" value="Limpiar Formulario">
 					</div>
 				</form>
 			</div>

@@ -9,6 +9,7 @@ use App\Http\Requests\PublicationRequest;
 
 class PublicationController extends Controller
 {
+     
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +29,8 @@ class PublicationController extends Controller
      */
     public function create()
     {
-        return view('publications.create');
+       $users  = User::all();
+        return view('publications.create')->with('users', $users);
     }
 
     /**
@@ -39,18 +41,21 @@ class PublicationController extends Controller
      */
     public function store(PublicationRequest $request)
     {
-        $publication = new Publication;
-        $publication->title         = $request->title;
-        $publication->description   = $request->description;
-        $publication->user_id       = $request->user_id;
+        $publications = new Publication;
+        $publications->title            = $request->title;
+        $publications->description      = $request->description;
+        $publications->user_id          = $request->user_id;
+       
+
         if ($request->hasFile('file')) {
-            $file = time().'.'.$request->file->extension();
-            $request->file->move(public_path('imgs'), $file);
-            $publication->file = 'imgs/'.$file;
+            $file = $request->file('file');
+            $name = $file->getClientOriginalName();
+            $request->file->move(public_path('imgs'), $name);
+            $publications->file = 'imgs/'.$name;
         }
-        if($publication->save()) {
-            return redirect('publications')->with('message', 'La Publicación: '.$publication->name.' fue adicionada con Exito!');
-        }
+        if($publications->save()) {
+                return redirect('publications')->with('message', 'La Publicación:  '.$publications->title.'  fué adicionada con Éxito!');
+            }
     }
 
     /**
@@ -61,8 +66,8 @@ class PublicationController extends Controller
      */
     public function show($id)
     {
-        $publication = Publication::findOrFail($id);
-        return view('publications.show')->with('publication', $publication);
+        $publications =  Publication::find($id);
+       return view('publications.show')->with('publications', $publications);
     }
 
     /**
@@ -73,8 +78,11 @@ class PublicationController extends Controller
      */
     public function edit($id)
     {
-        $publication = Publication::findOrFail($id);
-        return view('publications.edit')->with('publication', $publication);
+        $users  = User::all();
+        $publications = Publication::find($id);
+        return view('publications.edit')
+             ->with('publications', $publications)
+             ->with('users', $users);
     }
 
     /**
@@ -86,17 +94,19 @@ class PublicationController extends Controller
      */
     public function update(PublicationRequest $request, $id)
     {
-        $publication = Publication::find($id);
-        $publication->title         = $request->title;
-        $publication->description   = $request->description;
-        $publication->user_id       = $request->user_id;
+        $publications = Publication::find($id);
+        $publications->title            = $request->title;
+        $publications->description      = $request->description;
+        $publications->user_id          = $request->user_id;
+       
         if ($request->hasFile('file')) {
-            $file = time().'.'.$request->file->extension();
-            $request->file->move(public_path('imgs'), $file);
-            $publication->file = 'imgs/'.$file;
+            $file = $request->file('file');
+            $name = $file->getClientOriginalName();
+            $request->file->move(public_path('imgs'), $name);
+            $publications->file = 'imgs/'.$name;
         }
-        if($publication->save()) {
-            return redirect('publications')->with('message', 'La Publicación: '.$publication->name.' fue modificada con Exito!');
+        if($publications->save()) {
+            return redirect('publications')->with('message', 'La Publicación:  '.$publications->title.'  fué Modificada con Éxito!');
         }
     }
 
@@ -108,9 +118,9 @@ class PublicationController extends Controller
      */
     public function destroy($id)
     {
-        $publication = Publication::find($id);
-         if($publication->delete()) {
-            return redirect('publications')->with('message', 'La Publicación: '.$publication->name.' fue eliminada con Exito!');
+       $publications = Publication::find($id);
+         if($publications->delete()) {
+            return redirect('publications')->with('message', 'La Publicación:  '.$publications->title.'  fué eliminado con Éxito!');
         }
     }
 }

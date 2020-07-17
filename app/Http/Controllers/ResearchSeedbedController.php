@@ -8,8 +8,10 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ResearchSeedbedRequest;
 
+
 class ResearchSeedbedController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +30,11 @@ class ResearchSeedbedController extends Controller
      */
     public function create()
     {
-        return view('research_seedbeds.create');
+        $quarters = Quarters::all();
+        $cats  = Category::all();
+        return view('research_seedbeds.create')
+             ->with('quarters', $quarters)
+             ->with('cats', $cats);
     }
 
     /**
@@ -62,7 +68,7 @@ class ResearchSeedbedController extends Controller
      */
     public function show($id)
     {
-        $research_seedbeds = Research_seedbed::findOrFail($id);
+        $research_seedbeds = Research_seedbed::find($id);
         return view('research_seedbeds.show')->with('research_seedbeds', $research_seedbeds);
     }
 
@@ -74,8 +80,13 @@ class ResearchSeedbedController extends Controller
      */
     public function edit($id)
     {
-        $research_seedbeds = Research_seedbed::findOrFail($id);
-        return view('research_seedbeds.edit')->with('research_seedbeds', $research_seedbeds);
+        $research_seedbeds = Research_seedbed::find($id);
+        $quarters          = Quarter::all();
+        $cats              = Category::all();
+        return view('research_seedbeds.edit')
+             ->with('research_seedbeds', $research_seedbeds)
+             ->with('quarters', $quarters)
+             ->with('cats', $cats);
     }
 
     /**
